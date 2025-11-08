@@ -1,7 +1,17 @@
-# STAPHYLOCOCCUS SAPROPTICUS BAKTERISININ ISS VE DUNYADAKI GENOMLARININ KARŞILAŞTIRILIP UZAYDAKİ RADYASYONUN BAKTERININ GENOMUNA VE PATOJENİTESİNE OLAN ETKISININ ARASTIRILMASI
+# STAPHYLOCOCCUS SAPROPHYTICUS BAKTERISININ ISS VE DUNYADAKI GENOMLARININ KARŞILAŞTIRILIP UZAYDAKİ RADYASYONUN BAKTERININ GENOMUNA VE PATOJENİTESİNE OLAN ETKISININ ARASTIRILMASI
+## TEZİN AMACI
 
-## STAPHYLOCOCCUS SAPROPTICUS BAKTERISININ GENEL OZELLIKLERI
-Staphylococcus Sapropticus bir fırsatçı patojendir.Boşaltım yolu hastalıklarına yol açar ve genellikle bağırsaklarda görülür.Genç kadınlarda daha sık görülür.
 
+
+## STAPHYLOCOCCUS SAPROPHYTICUS BAKTERISININ GENEL OZELLIKLERI
+Staphylococcus Saprophyticus bir fırsatçı patojendir.Gram pozitif bir bakteridir.Boşaltım yolu hastalıklarına yol açar ve genellikle bağırsaklarda görülür.Genç kadınlarda daha sık görülür.
+
+## ROAD MAP
+
+
+## 
+
+
+##
 
 
