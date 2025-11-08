@@ -10,7 +10,7 @@ Staphylococcus Saprophyticus bir fırsatçı patojendir,yani normalde zararsızd
 NASA GeneLab sitesinden ilk önce bakterimizi seçtik , sonra tezimiz için çalışmaya uygun bir genomu ISS çalışmaları içinden bulduk.Dünyadaki genomumuz ise bakterimizin referans genomu olacak.
 Bu genomlarımızı sırasıyla :
 
--FASTQC ( genomlarımızın kalitesi hakkında bilgi ediniyoruz )
+-FASTQC ( genomlarımızın kalitesi hakkında bilgi ediniyoruz ) /r
 -TRIMMING (hatalı veya eksik genom parçalarını çıkartıyoruz )
 -ASSEMBLY (de novo assembly , spades )
 -QUAST (assembly kalitesini kontrol,n50 L50 değerlerine bakmak)
