@@ -93,9 +93,19 @@ TRIMMING aşaması bittiğinde bize bir "surviving pairs" değeri verir , biz bu
 
 ## ASSEMBLY
 Assembly kısa okuma parçalarının birleştirilip contig - scaffold'ların oluşturulduğu aşamadır.Assembly aşamasında pair-end dosyalarımızı SPADEs sayesinde birleştireceğiz.SPADEs bir genom birleştirme modülüdür.2 tür assembly türü vardır bunlar Referance-Guided Assembly ve De Novo Genome Assembly şeklindedir.Biz projemizde De Novo Genome Assembly yapıyoruz.
-- Referance-Guided Assembly : Read'lerin referans içindeki en benzer bölgeye benzerliğine göre gruplandırılması ve sonrasında read'lerin bir referansa göre hizalayarak bir araya getirilmesi işlemidir.
-- De Novo Genome Assembly : Referans kullanmadan tam uzunlukta sequence oluşturmak için read'lerin bir araya getirilmesidir.
+-- Referance-Guided Assembly : Read'lerin referans içindeki en benzer bölgeye benzerliğine göre gruplandırılması ve sonrasında read'lerin bir referansa göre hizalayarak bir araya getirilmesi işlemidir.
+-- De Novo Genome Assembly : Referans kullanmadan tam uzunlukta sequence oluşturmak için read'lerin bir araya getirilmesidir.Aşamaları şu şekildedir :
+- Sequencing read'leri contiguous sequence'lere ekleme ( contig )
+- Contig'leri daha büyük sequence'lere bağla (scaffold)
+- Scaffold'ları birbirine bağla (kromozom)
 
+  De novo genome assembly yönteminde "Tandem Repeat" problemi çıkabiliyor.Tandem Repeat bazı sequence'lerin birden fazla kez tekrarlanarak okunması demektir.Bunun çözümü olarak da "coverage" değerini arttırmaktır.Coverage değeri 10 veya üstündeyse iyi demektir.
+```
+                read uzunluğu  x  read sayısı(bp)
+   Coverage =        ---------------------
+                      genom uzunluğu (bp)
+```
+Normalde sırasıyla  k-mer seçimi (21,55) , de Bruijn Graph , contig assembly , scaffold oluşturma , polishing  aşamalarının yapılması gerekmektedir.Fakat SPADEs kullandığınız zaman tüm bu aşamaları tek başına yapmaktadır.
 ```
 spades.py \
   -1 trimmed_data/SRR13530715_1_paired.fastq \
