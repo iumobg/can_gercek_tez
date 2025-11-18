@@ -98,6 +98,13 @@ Assembly kısa okuma parçalarının birleştirilip contig - scaffold'ların olu
 - Sequencing read'leri contiguous sequence'lere ekleme ( contig )
 - Contig'leri daha büyük sequence'lere bağla (scaffold)
 - Scaffold'ları birbirine bağla (kromozom)
+
+3 tane De Novo Genome Assembly Algoritması vardır:
+### Greedy : Örtüşme oranı en yüksek read'leri yinelemeli olarak birleştirmek.
+### Overlap - Layout Consensus : Overlap'leri bulmak ve birleştirmek , bunu yapmak için "Hamiltonian path" kullanılır.
+- Hamiltonian path : node'ların (read) sadece bir kere kullanılması şartıyla genomu bulmak için bir yol oluşturulması.Long-read'lerde kullanılır.
+### de Bruijn Graph : Genome assembly'i "Eulorian graph" 'te ifade eder.
+- Eulorian Graph : k-mer'ler oluşturulur.k-1 mer'ler "node", k-mer'ler "edge" olur.Genomun doğru yolunu bulmak için bütün edge'ler bir kere kullanılmak şartıyla genomun dizisi bulunur(Eulorian path).Tüm bu yollar üst üste eklenerek contig dizileri elde edilir.Short-read'lerde kullanılır.
    
 
   De novo genome assembly yönteminde "Tandem Repeat" problemi çıkabiliyor.Tandem Repeat bazı sequence'lerin birden fazla kez tekrarlanarak okunması demektir.Bunun çözümü olarak da "coverage" değerini arttırmaktır.Coverage değeri 10 veya üstündeyse iyi demektir.
