@@ -54,12 +54,12 @@ Per Sequence Quality Scores : Grafiğin pik yaptığı noktaya bakıyoruz , > 30
 Adapter Content : Grafiğin düz yani Adapter'in olmaması gerekiyor,eğer varsa TRIMMING gerekebilir.
 
 Bizim elde ettiğimiz verilerde sonuçlar şu şekilde :
-
+```
                                         ISS           WORLD
 Per Base Sequence Quality              YEŞİL          YEŞİL
 Per Sequence Quality Scores             36             36
 Adapter Content                         -              -
-
+```
 Tüm bunlar bizim elde etmek istediğimiz sonuçlardı , sadece Per Base Sequence Quality grafiklerinde sonlara doğru düşüş yaşanıyor , bu yüzden de TRIMMING yapacağız.
 
 
@@ -168,17 +168,17 @@ LGA90                        14           1
 
 Quast sonuçlarımız bu şekilde çıktı.Burdaki elde ettiğimiz verilere göre birkaç yorumda bulunmak mümkün.İlk olarak bakmak istediğimiz şey N50 ve L50 değerleri.
 N50 = Genomun toplam uzunluğunun yarısına ulaşıldığında kullanılan son contig'in uzunluk değeridir.Düşük bir değer bize bir sürü küçük parçaya ayrıldığını gösterir ki bu iyi değildir.Yüksek bir değer ise bize iyi kaliteli , uzun contigli bir veri kullandığımızı gösterir.
-
+```
                            ıss          world
 N50                       711479       2516575
-
+```
 Sonucumuza baktığımızda 2 değerimizin de yüksek olduğunu görüyoruz, bu da bize uzun contig'li ve iyi kalitede bir veri kullandığımızı gösteriyor
 
 L50 = Genomun toplam uzunluğunun yarısını elde etmek için kaç tane contig kullanmamız gerektiğini belirten değerdir.Düşük bir değer bizi bir sürü küçük parça var sonucuna ulaştırır ki bu pek de iyi değil.Yüksek bir değer ise bize az sayıda büyük uzunlukta contig'lere sahip olduğumuzu gösterir.
-
+```
                             ıss         world
 L50                          2            1      
-
+```
 Sonucumuza baktığımızda çok az sayıda contig olduğunu gösteriyor ki bu bizim için sevindirici haber çünkü az olması demek genomun çok fazla parçaya bölünmemiş olduğunu gösteriyor bize.
 
 
