@@ -93,8 +93,8 @@ TRIMMING aşaması bittiğinde bize bir "surviving pairs" değeri verir , biz bu
 
 ## ASSEMBLY
 Assembly kısa okuma parçalarının birleştirilip contig - scaffold'ların oluşturulduğu aşamadır.Assembly aşamasında pair-end dosyalarımızı SPADEs sayesinde birleştireceğiz.SPADEs bir genom birleştirme modülüdür.2 tür assembly türü vardır bunlar Referance-Guided Assembly ve De Novo Genome Assembly şeklindedir.Biz projemizde De Novo Genome Assembly yapıyoruz.
--Referance-Guided Assembly : Read'lerin referans içindeki en benzer bölgeye benzerliğine göre gruplandırılması ve sonrasında read'lerin bir referansa göre hizalayarak bir araya getirilmesi işlemidir.
--De Novo Genome Assembly : Referans kullanmadan tam uzunlukta sequence oluşturmak için read'lerin bir araya getirilmesidir.Aşamaları şu şekildedir :
+- Referance-Guided Assembly : Read'lerin referans içindeki en benzer bölgeye benzerliğine göre gruplandırılması ve sonrasında read'lerin bir referansa göre hizalayarak bir araya getirilmesi işlemidir.
+- De Novo Genome Assembly : Referans kullanmadan tam uzunlukta sequence oluşturmak için read'lerin bir araya getirilmesidir.Aşamaları şu şekildedir :
     -Sequencing read'leri contiguous sequence'lere ekleme ( contig )
     -Contig'leri daha büyük sequence'lere bağla (scaffold)
     -Scaffold'ları birbirine bağla (kromozom)
