@@ -1,7 +1,7 @@
 # STAPHYLOCOCCUS SAPROPHYTICUS BAKTERISININ ISS VE DUNYADAKI GENOMLARININ KARŞILAŞTIRILIP UZAYDAKİ RADYASYONUN BAKTERININ GENOMUNA VE PATOJENİTESİNE OLAN ETKISININ ARASTIRILMASI
 
 ## TEZİN AMACI
-Staphylococcus Saprophyticus patojenin uzaydaki radyasyona bağlı olarak genomunda bir değişiklik var mı bunu tespit etmek ve bu genom değişiklerininin ne gibi sonuçlara yol açabileceğinin araştırılması.
+Staphylococcus Saprophyticus bakterisinin uzaydaki ve dünyadaki genomlarının karşılaştırılmasıyla bakterinin uzaydaki radyasyona bağlı olarak genomunda bir değişiklik var mı bunu tespit etmek ve bu genom değişiklerininin ne gibi sonuçlara yol açabileceğinin araştırılması.
 
 ## STAPHYLOCOCCUS SAPROPHYTICUS BAKTERISININ GENEL OZELLIKLERI
 Staphylococcus Saprophyticus bir fırsatçı patojendir,yani normalde zararsızdır fakat hedef konumuna ulaşınca hastalığa yol açar.Gram pozitif bir bakteridir.İdrar yolu enfeksiyonu hastalıklarına yol açar ve genellikle mesaneye yapışmasıyla bilinir.Genç kadınlarda daha sık görülür.Cinsel aktivite bu bakterinin bulaşmasında etkilidir.
