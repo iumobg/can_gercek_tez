@@ -28,6 +28,7 @@ Bu genomlarımızı sırasıyla :
 
 
 aşamalarından geçireceğiz.
+Genom verilerimiz ILLUMINA makinesi kullanarak elde edilmiştir.
 Bu aşamaları yaparken Nextflow'dan ve onun kütüphanelerinden yararlanacağız(bkz.nfcore-pangenome).
 Tüm bu aşamalar gerçekleştirildikten sonra genomdaki (varsa) radyasyona bağlı değişiklikleri tablolar,grafikler ve sayısal verilerle somutlaştıracağız.
 Somutlaştırdığımız verilere bağlı olarak da bu genom değişikliklerinin bakterinin patojenitesinde ne gibi değişikliklere yol açabileceğini araştıracağız.
@@ -43,13 +44,67 @@ fastqc raw_data/SRR13530715_1.fastq raw_data/SRR13530715_2.fastq -o qc_results/ 
 ```
 Bu kodları çalıştırarak 2 tane HTML dosyası elde ediyoruz.Bu HTML dosyalarından aldığımız sonuçlar ise şu şekilde :
 
-file:///C:/TEZ/FASTQC_SONUCLARI/SRR13530715_1_fastqc.html
-file:///C:/TEZ/FASTQC_SONUCLARI/SRR13530715_2_fastqc.html
+BURAYA RESİMLERİ YÜKLEYECEĞİM
+
+
+Bu sonuçlarda bakmamız gereken belli değerler var.
+
+Per Base Sequence Quality : Grafiğin yeşil gölgede ilerleyip ilerlemediğine bakarız , eğer çıkan çubuklarda sonda düşüş varsa TRIMMING yapmak gerekebilir.
+Per Sequence Quality Scores : Grafiğin pik yaptığı noktaya bakıyoruz , > 30 olmalı
+Adapter Content : Grafiğin düz yani Adapter'in olmaması gerekiyor,eğer varsa TRIMMING gerekebilir.
+
+Bizim elde ettiğimiz verilerde sonuçlar şu şekilde :
+
+                                        ISS           WORLD
+Per Base Sequence Quality              YEŞİL          YEŞİL
+Per Sequence Quality Scores             36             36
+Adapter Content                         -              -
+
+Tüm bunlar bizim elde etmek istediğimiz sonuçlardı , sadece Per Base Sequence Quality grafiklerinde sonlara doğru düşüş yaşanıyor , bu yüzden de TRIMMING yapacağız.
+
 
 
 ## TRIMMING
+Bu aşamada elde ettiğimiz değerlerde istediğimiz gibi bir sonuç alamazsak TRIMMING aşamasında istediğimiz sonucu almamızı engelleyen parçalardan kurtulacağız.
+```
+cd ~/staph_project
+conda activate assembly
+
+trimmomatic PE -threads 4 \
+  raw_data/SRR13530715_1.fastq \
+  raw_data/SRR13530715_2.fastq \
+  trimmed_data/SRR13530715_1_paired.fastq \
+  trimmed_data/SRR13530715_1_unpaired.fastq \
+  trimmed_data/SRR13530715_2_paired.fastq \
+  trimmed_data/SRR13530715_2_unpaired.fastq \
+  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50
+
+```
+Burada gördüğünüz gibi paired_fastq ve unpaired_fastq dosyaları var , bunların arasında şöyle bir durum var.
+Biz çalışmalarımızda paired_fastq dosyalarını kullanıyoruz , unpaired_fastq dosyalarını değil . "unpaired_fastq" dosyalarının oluşturulma sebebi aslında "trimmomatic" 'in kendi tasarımıdır aslında.Bu unpaired_fastq dosyalarını nadir de olsa single-end assembly,coverage değerini arttırmak ve meta-genom çalışmalarında kullanabiliyoruz.unpaired_fastq dediğimiz dosyalar TRIMMING aşamasında genomda silinen bölgeler demek değildir.Şimdi bir forward ve bir reverse primer read'leri düşünelim.Burada primerlerden biri TRIMMING aşamasından sonra içindeki okunamayan-yanlış veriler silindiğinde MINLEN:50 'yi karşılamazsa o primer silinir.Geriye kalan ve eşi MINLEN:50 ' yi gerçekleştiremediği için silinen primer'imiz bizim " unpaired " verimiz oluyor.paired_1 ve paired_2 dosyalarının içeriklerine bakarsanız hepsi birbirinin eşi diziler olarak gözükecektir,fakat unpaired dosyalarında eş dizileri göremeyeceksiniz çünkü MINLEN:50 ' yi sağlayamadıkları için eş dizileri silindi.Eğer okunamayan - yanlış bölgeler silindiğinde dahi MINLEN:50 değerini sağlıyorsa bu sefer paired_fastq dosyası olarak çıkacaklardı.SLIDINGWINDOW:4:20 demek ise 4 bazlık frame'de skor değeri 20'den düşük olanları kes demektir.
+
+TRIMMING aşaması bittiğinde bize bir "surviving pairs" değeri verir , biz bu değerin > 95 olmasını isteriz.Bunun nedeni verimizden ne kadar az baz silinirse o kadar iyidir.Bizim sonucumuz % 96.84 çıktı , her şey yolunda.
+
+
+
+
 ## ASSEMBLY
+Assembly kısa okuma parçalarının birleştirilip contig - scaffold'ların oluşturulduğu aşamadır.Assembly aşamasında pair-end dosyalarımızı SPADEs sayesinde birleştireceğiz.SPADEs bir genom birleştirme modülüdür.2 tür assembly türü vardır bunlar Referance-Guided Assembly ve De Novo Genome Assembly şeklindedir.Biz projemizde De Novo Genome Assembly yapıyoruz.
+Referance-Guided Assembly : Read'lerin referans içindeki en benzer bölgeye benzerliğine göre gruplandırılması ve sonrasında read'lerin bir referansa göre hizalayarak bir araya getirilmesi işlemidir.
+De Novo Genome Assembly : Referans kullanmadan tam uzunlukta sequence oluşturmak için read'lerin bir araya getirilmesidir.
+
+```
+spades.py \
+  -1 trimmed_data/SRR13530715_1_paired.fastq \
+  -2 trimmed_data/SRR13530715_2_paired.fastq \
+  -o assembly/ISS_assembly \
+  --isolate \
+  -t 8 \
+  -m 24
+```
+Burada "--isolate" seçeneği bize optimize bir mod sağlar (--careful da kullanılabilir) , "-t" işlemciden kaç çekirdek , "-m" ise kaç GB ram kullanacağımızı belirlememizi sağlar.
 ## QUAST
+Quast aşaması Genome Assembly kalitesini değerlendirmek için kullandığımız araçlardan biridir.Farklı Assembly'leri karşılaştırmak ve Contig'lerin nasıl bir biçimde (uzun-sıralı-bütün) olduğunu görmek için bize sayısal veriler verir ve biz de bu sayısal veriler üzerinden değerlendirmemizi yaparız.
 ```
 # Quast çıktısı
 Assembly                     ISS_Lab3     Earth_Reference
@@ -114,12 +169,19 @@ LGA90                        14           1
 Quast sonuçlarımız bu şekilde çıktı.Burdaki elde ettiğimiz verilere göre birkaç yorumda bulunmak mümkün.İlk olarak bakmak istediğimiz şey N50 ve L50 değerleri.
 N50 = Genomun toplam uzunluğunun yarısına ulaşıldığında kullanılan son contig'in uzunluk değeridir.Düşük bir değer bize bir sürü küçük parçaya ayrıldığını gösterir ki bu iyi değildir.Yüksek bir değer ise bize iyi kaliteli , uzun contigli bir veri kullandığımızı gösterir.
 
+                           ıss          world
+N50                       711479       2516575
+
+Sonucumuza baktığımızda 2 değerimizin de yüksek olduğunu görüyoruz, bu da bize uzun contig'li ve iyi kalitede bir veri kullandığımızı gösteriyor
+
 L50 = Genomun toplam uzunluğunun yarısını elde etmek için kaç tane contig kullanmamız gerektiğini belirten değerdir.Düşük bir değer bizi bir sürü küçük parça var sonucuna ulaştırır ki bu pek de iyi değil.Yüksek bir değer ise bize az sayıda büyük uzunlukta contig'lere sahip olduğumuzu gösterir.
 
                             ıss         world
 L50                          2            1      
 
-Bu sonuç bize assembly'mizin iyi bir 
+Sonucumuza baktığımızda çok az sayıda contig olduğunu gösteriyor ki bu bizim için sevindirici haber çünkü az olması demek genomun çok fazla parçaya bölünmemiş olduğunu gösteriyor bize.
+
+
 
 ## ANI (AVERAGE NUCLEOTIDE IDENTITY)
 ## SNP (SINGLE NUCLEOTİDE IDENTITY)
