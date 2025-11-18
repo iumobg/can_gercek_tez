@@ -40,6 +40,7 @@ Somutlaştırdığımız verilere bağlı olarak da bu genom değişikliklerinin
 ## TRIMMING
 ## ASSEMBLY
 ## QUAST
+```
 # Quast çıktısı
 tie2-build --threads 4 ref_file ref_name
 bowtie2 -x ref_name -1 fastq1 -2 fastq2 -S sam_file
@@ -56,13 +57,14 @@ tabix -p vcf gz_file
 bcftools consensus -f ref_file gz_file > consensus_fasta
 
 prokka --outdir outputDir --prefix prokkaAnnotes --force consensus_fasta
+```
 
 Quast sonuçlarımız bu şekilde çıktı.
 ## ANI (AVERAGE NUCLEOTIDE IDENTITY)
 ## SNP (SINGLE NUCLEOTİDE IDENTITY)
 ## WHOLE GENOME ALIGNMENT
 ## PANGENOME (NFCORE-PANGENOME)
-
+## VARIANT ANALYSIS
 
 
 
