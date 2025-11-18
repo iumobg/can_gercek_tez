@@ -26,6 +26,8 @@ Bu genomlarımızı sırasıyla :
 
 -PANGENOME (nfcore-pangenome)  
 
+-VARIANT ANALYSIS
+
 
 aşamalarından geçireceğiz.
 Genom verilerimiz ILLUMINA makinesi kullanarak elde edilmiştir.
