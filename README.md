@@ -1,4 +1,4 @@
-# STAPHYLOCOCCUS SAPROPHYTICUS BAKTERISININ ISS VE DUNYADAKI GENOMLARININ KARŞILAŞTIRILIP UZAYDAKİ RADYASYONUN BAKTERININ GENOMUNA VE PATOJENİTESİNE OLAN ETKISININ ARASTIRILMASI
+# UZAYDAKI RADYASYONUN STAPHYLOCOCCUS SAPROPHYTICUS BAKTERISININ  GENOMUNA VE PATOJENİTESİNE OLAN ETKISININ ARASTIRILMASI 
 
 ## TEZİN AMACI
 Staphylococcus Saprophyticus bakterisinin uzaydaki ve dünyadaki genomlarının karşılaştırılmasıyla bakterinin uzaydaki radyasyona bağlı olarak genomunda bir değişiklik var mı bunu tespit etmek ve bu genom değişiklerininin ne gibi sonuçlara yol açabileceğinin araştırılması.
@@ -51,9 +51,9 @@ BURAYA RESİMLERİ YÜKLEYECEĞİM
 
 Bu sonuçlarda bakmamız gereken belli değerler var.
 
-Per Base Sequence Quality : Grafiğin yeşil gölgede ilerleyip ilerlemediğine bakarız , eğer çıkan çubuklarda sonda düşüş varsa TRIMMING yapmak gerekebilir.
-Per Sequence Quality Scores : Grafiğin pik yaptığı noktaya bakıyoruz , > 30 olmalı
-Adapter Content : Grafiğin düz yani Adapter'in olmaması gerekiyor,eğer varsa TRIMMING gerekebilir.
+- Per Base Sequence Quality : Grafiğin yeşil gölgede ilerleyip ilerlemediğine bakarız , eğer çıkan çubuklarda sonda düşüş varsa TRIMMING yapmak gerekebilir.
+- Per Sequence Quality Scores : Grafiğin pik yaptığı noktaya bakıyoruz , > 30 olmalı
+- Adapter Content : Grafiğin düz yani Adapter'in olmaması gerekiyor,eğer varsa TRIMMING gerekebilir.
 
 Bizim elde ettiğimiz verilerde sonuçlar şu şekilde :
 ```
