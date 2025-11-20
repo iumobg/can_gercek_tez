@@ -30,7 +30,7 @@ Bu genomlarımızı sırasıyla :
 
 
 aşamalarından geçireceğiz.
-Genom verilerimiz ILLUMINA makinesi kullanarak elde edilmiştir.
+Genom verilerimiz ILLUMINA (short read) makinesi kullanarak elde edilmiştir.
 Bu aşamaları yaparken Nextflow'dan ve onun kütüphanelerinden yararlanacağız(bkz.nfcore-pangenome).
 Tüm bu aşamalar gerçekleştirildikten sonra genomdaki (varsa) radyasyona bağlı değişiklikleri tablolar,grafikler ve sayısal verilerle somutlaştıracağız.
 Somutlaştırdığımız verilere bağlı olarak da bu genom değişikliklerinin bakterinin patojenitesinde ne gibi değişikliklere yol açabileceğini araştıracağız.
